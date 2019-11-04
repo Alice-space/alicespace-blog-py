@@ -1,5 +1,5 @@
 db.sqlite3
-/alicespace/settings.py
+/alicespace/settings.copy.py
 /uwsgi/*
 /log
 /.well-known
