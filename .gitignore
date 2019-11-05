@@ -6,3 +6,4 @@ db.sqlite3
 /blog/migrations/__pycache__
 /.private
 /static
+/.well-known
