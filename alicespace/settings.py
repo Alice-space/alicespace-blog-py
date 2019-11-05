@@ -32,7 +32,7 @@ def read_file_as_str(file_path):
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = read_file_as_str(os.path.join(BASE_DIR, 'private/secret_key'))
+SECRET_KEY = read_file_as_str(os.path.join(BASE_DIR, '.private/secret_key'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'alicespace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'private/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '.private/db.sqlite3'),
     }
 }
 
