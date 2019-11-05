@@ -1,6 +1,0 @@
-db.sqlite3
-/.vscode
-/alicespace/__pycache__
-/blog/__pycache__
-/blog/templatetags/__pycache__
-/blog/migrations/__pycache__
