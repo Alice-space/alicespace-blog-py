@@ -1,18 +1,31 @@
 '''
 @Author: Alicespace
 @Date: 2019-11-04 15:50:44
-@LastEditTime: 2019-11-04 15:51:04
+@LastEditTime: 2019-11-25 15:40:24
 '''
 from django.shortcuts import render
 from .models import Article, ArticleColumn
 from .viewsColumn import generateColumn
 from django.http.response import Http404, HttpResponse
+import re
 
 ItemPerPage = 6
 firstPage = 1
 NavBarPerPage = 15
 
 # Create your views here.
+
+
+def abstract(s):
+    abstract = s
+    pattern = re.compile(
+        u'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    )
+    items_to_filter = re.findall(pattern, s)
+    items_to_filter += ['!', '#', '[', ']', '>', '(', ')', '```', '**', '-']
+    for item in items_to_filter:
+        abstract = abstract.replace(item, "")
+    return abstract[:50]
 
 
 def generateListContent(listId, context, ArticleSet):
@@ -22,7 +35,7 @@ def generateListContent(listId, context, ArticleSet):
         listItem = {}
         listItem[
             'title'] = '[' + article_item.article_column.title + ']' + article_item.article_title
-        listItem['content'] = article_item.article_content[:50]
+        listItem['content'] = abstract(article_item.article_content[:300])
         listItem['url'] = '/blog/article/' + str(article_item.id)
         listItem['picurl'] = article_item.article_picurl
         if article_item.is_top:
