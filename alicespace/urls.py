@@ -1,3 +1,8 @@
+'''
+@Author: Alicespace
+@Date: 2019-11-04 15:36:02
+@LastEditTime: 2019-11-27 23:49:47
+'''
 """alicespace URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -17,9 +22,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import welcomeIndex
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
-    path('', welcomeIndex)
+    path('', welcomeIndex),
+    path(r'mdeditor/', include('mdeditor.urls'))
 ]
-urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += staticfiles_urlpatterns()

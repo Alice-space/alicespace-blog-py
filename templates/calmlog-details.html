@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% load blogListFilter %}
+{% load staticfiles%}
 
 <head>
     <link rel="icon" type="image/x-ico" href="/static/img/logo.ico" />
@@ -13,6 +14,9 @@
     <link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/highlight/styles/railscasts.css">
     <link rel="stylesheet" href="/static/highlight/styles.css">
+    <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+    <script id="-cdnjs-cloudflare-com-ajax-libs-KaTeX-0-3-0-katex-min" type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
 </head>
 
 <body>
@@ -56,7 +60,34 @@
 
                     </div>
                     <div class="cl-artical">
-                        {{ blog_detail_content|safe }}
+                        <link rel="stylesheet" href="/static/editormd/css/editormd.preview.css" />
+                        <div id="test-markdown-view">
+                            <!-- Server-side output Markdown text -->
+                            <textarea style="display:none;">{{ blog_detail_content | safe}}</textarea>
+                        </div>
+                        <script src="/static/jquery/jquery.min.js"></script>
+                        <script src="/static/editormd/editormd.js"></script>
+                        <script src="/static/editormd/lib/marked.min.js"></script>
+                        <script src="/static/editormd/lib/raphael.min.js"></script>
+                        <script src="/static/editormd/lib/underscore.min.js"></script>
+                        <script src="/static/editormd/lib/sequence-diagram.min.js"></script>
+                        <script src="/static/editormd/lib/flowchart.min.js"></script>
+                        <script src="/static/editormd/lib/jquery.flowchart.min.js"></script>
+                        <script src="/static/editormd/lib/prettify.min.js"></script>
+                        <script type="text/javascript">
+                            $(function () {
+                                var testView = editormd.markdownToHTML("test-markdown-view", {
+                                    htmlDecode: "style,script,iframe",  // you can filter tags decode
+                                    emoji: true,
+                                    taskList: true,
+                                    tex: true,  // 默认不解析
+                                    flowChart: true,  // 默认不解析
+                                    sequenceDiagram: true,  // 默认不解析
+
+                                })
+                            });
+
+                        </script>
                     </div>
                 </div>
 
@@ -125,10 +156,7 @@
     </div>
     <script src="/static/jquery/jquery.min.js"></script>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/highlight/highlight.pack.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-    </script>
+
 </body>
 
 </html>

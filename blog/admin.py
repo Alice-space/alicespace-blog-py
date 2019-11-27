@@ -1,5 +1,12 @@
+'''
+@Author: Alicespace
+@Date: 2019-11-04 15:36:02
+@LastEditTime: 2019-11-27 23:53:50
+'''
 from django.contrib import admin
 from .models import Article, ArticleColumn
+from mdeditor.widgets import MDEditorWidget
+from django.db import models
 
 
 # Register your models here.
@@ -13,6 +20,8 @@ class ControlArticle(admin.ModelAdmin):
                     'create_time', 'update_time', 'article_column_title')
     # 搜索条件
     search_fields = ('article_title', )
+
+    formfield_overrides = {models.TextField: {'widget': MDEditorWidget}}
 
 
 class ControlArticleColumn(admin.ModelAdmin):

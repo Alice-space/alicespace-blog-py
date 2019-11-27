@@ -1,4 +1,10 @@
+'''
+@Author: Alicespace
+@Date: 2019-11-04 15:36:02
+@LastEditTime: 2019-11-27 23:48:55
+'''
 from django.db import models
+from mdeditor.fields import MDTextField
 
 
 # Create your models here.
@@ -14,7 +20,8 @@ class ArticleColumn(models.Model):
 
 class Article(models.Model):
     article_title = models.CharField(max_length=150, verbose_name='标题')
-    article_content = models.TextField(verbose_name='正文')
+    # article_content = models.TextField(verbose_name='正文')
+    article_content = MDTextField()
     article_auth = models.CharField(max_length=20, verbose_name='作者')
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
