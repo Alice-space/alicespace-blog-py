@@ -11,8 +11,7 @@ my personal website
 
 ## How to use it for your own personal website
 
-1.create a new folder under root column named `.private`.
-
+1. create a new folder under root column named `.private`.
 - inside `.private` create a file named `secret_key`
 - input your own secret key (such as `dsiufje98f3ui@!#$#F#$%Esvdfsdafw`)
 
