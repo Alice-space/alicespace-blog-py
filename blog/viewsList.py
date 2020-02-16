@@ -6,7 +6,6 @@
 from django.shortcuts import render
 from .models import Article, ArticleColumn
 from .viewsColumn import generateColumn
-from django.http.response import Http404, HttpResponse
 import re
 
 ItemPerPage = 6
