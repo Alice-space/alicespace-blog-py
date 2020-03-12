@@ -9,6 +9,8 @@
 my personal website  
 [alicespace.cn](https://alicespace.cn '')
 
+### Powered by Django
+
 ## How to use it for your own personal website
 
 1. create a new folder under root column named `.private`.
